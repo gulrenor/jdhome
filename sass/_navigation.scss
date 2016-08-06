@@ -1,0 +1,62 @@
+// Assumes susy and breakpoint are installed.
+// Assumes nav.js is included to control hamburger menu visibility.
+
+@mixin menu-overlay {
+  position: absolute;
+  width: span(16);
+}
+
+nav {
+  justify-content: flex-end;
+
+  @include susy-breakpoint($bp-small, $susy) {
+    position: static;
+  }
+
+  button {
+    display: block;
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    @include susy-breakpoint($bp-small, $susy) {
+      // Hides hamburger on anything larger than mobile.
+      display: none;
+    }
+  }
+
+  ul {
+    // Comment this out if you'd prefer the menu to shift content downwards.
+    @include menu-overlay;
+
+    display: none;
+    flex-direction: column;
+    list-style: none; //mini-reset
+    margin: 0; //mini-reset
+    padding: 0; //mini-reset
+    z-index: 50;
+
+    @include susy-breakpoint($bp-small, $susy) {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      position: static;
+    }
+  }
+
+  li {
+    margin: 0;
+
+    @include susy-breakpoint($bp-small, $susy) {
+      margin: 0 .5em;
+      width: auto;
+    }
+  }
+
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

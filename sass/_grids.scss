@@ -1,0 +1,39 @@
+// Requirements
+// ============
+
+@import 'susy';
+@import 'compass';
+
+$susy: (
+  columns: 16,
+  gutters: 1 / 4,
+  global-box-sizing: content-box,
+);
+
+$bp-large: 960px;
+$bp-medium: 640px;
+$bp-small: 480px;
+
+// baseline grid
+$base-font-size: 16px;
+$base-line-height: 2em;
+$rhythm-unit: 'em';
+$rem-with-px-fallback: true;
+
+body {
+  margin: 0;
+  padding-top: .5rem;
+}
+
+.outer-container {
+  @include container(100%);
+}
+
+.inner-container {
+  @include container(100%);
+  padding: .5rem;
+
+  @include susy-breakpoint($bp-large, $susy) {
+    @include container(60rem);
+  }
+}

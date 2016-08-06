@@ -1,0 +1,11 @@
+button,
+input {
+  display: block;
+  padding: 1rem;
+}
+
+button {
+  background-color: $button-bg;
+  border: 0;
+  color: $button-color;
+}

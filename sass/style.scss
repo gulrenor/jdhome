@@ -1,0 +1,111 @@
+// Screen
+// ======
+
+//@import 'compass/reset';
+@import 'grids';
+@import 'typography';
+@import 'navigation';
+@import 'forms';
+@import 'colors';
+@include establish-baseline;
+
+// This sets the header height, the hamburger button height and width
+// and the logo image max height.
+$header-height: 6rem;
+
+* {
+  box-sizing: border-box;
+}
+
+%clearfix::after {
+  clear: both;
+  content: ' ';
+  display: table;
+}
+
+html {
+  //background-color: purple;
+  font-size: .85em;
+
+  @include susy-breakpoint($bp-small, $susy) {
+    //background-color: red;
+    font-size: .9em;
+  }
+
+  @include susy-breakpoint($bp-medium, $susy) {
+    //background-color: blue;
+    font-size: .95em;
+  }
+
+  @include susy-breakpoint($bp-large, $susy) {
+    //background-color: green;
+    font-size: 1em;
+  }
+}
+
+h1,
+h2,
+h3,
+h4, {
+  text-transform: uppercase;
+}
+
+header {
+  @extend %clearfix;
+  height: $header-height;
+  position: relative;
+}
+
+.titleblock {
+  @include span(4);
+  height: 100%;
+}
+
+.logo {
+  height: 100%;
+  padding: .25rem;
+}
+
+nav {
+  @include span(16);
+  height: header-height;
+
+  @include susy-breakpoint($bp-small, $susy) {
+    @include span(12 at 5);
+  }
+
+  button {
+    background-color: $nav-button-bg;
+    border: 0;
+    color: $nav-button-color;
+    height: $header-height;
+    text-align: center;
+    width: $header-height;
+  }
+
+  ul {
+    background-color: $nav-mobile-ul-bg;
+    text-align: center;
+
+    @include susy-breakpoint($bp-small, $susy) {
+      background-color: $nav-ul-bg;
+    }
+  }
+
+  li {
+    background-color: $nav-mobile-li-bg;
+    border-bottom: .125rem solid $nav-mobile-li-color;
+    color: $nav-mobile-li-color;
+    height: 3rem;
+    line-height: 3rem;
+
+    @include susy-breakpoint($bp-small, $susy) {
+      background-color: $nav-li-bg;
+      color: $nav-li-color;
+      height: $header-height;
+      line-height: $header-height;
+      padding: 0 1rem;
+    }
+  }
+
+}
