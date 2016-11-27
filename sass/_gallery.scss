@@ -1,0 +1,137 @@
+// Susy Method
+.gallery {
+  @extend %clearfix;
+  list-style: none; //reset
+  margin: 1rem 0; //reset
+  padding: 0; //reset
+}
+
+.tags {
+  @include span(16);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  //margin: 0; //reset
+  padding: 0; //reset
+
+  @include susy-breakpoint($bp-small, $susy) {
+    justify-content: space-between;
+  }
+}
+
+.tag {
+  background-color: $base-highlight;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  color: $base-bg;
+  list-style: none; //reset
+  margin-right: .5rem;
+  cursor: pointer;
+
+  @include susy-breakpoint($bp-small, $susy) {
+    margin-right: 0;
+  }
+
+}
+
+.active {
+  background-color: #f00;
+}
+
+.gallery-item {
+  margin-bottom: gutter(18);
+  transition: position 1s ease-in-out;
+
+  @include susy-breakpoint($bp-small, $susy) {
+    @include gallery(1 of 2) // 1 column
+  }
+
+  @include susy-breakpoint($bp-medium, $susy) {
+    @include gallery(1 of 3) // 3 columns
+  }
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    max-width: 100%;
+    height: 20rem;
+    border: .125rem solid $base-bg;
+
+    @include susy-breakpoint($bp-small, $susy) {
+      height: 20rem;
+    }
+
+    @include susy-breakpoint($bp-medium, $susy) {
+      height: 12rem;
+    }
+  }
+
+  span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 95%;
+    background-color: $base-highlight;
+    color: $base-body;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+  }
+}
+
+//Animations
+///*
+.gallery-item {
+  filter: saturate(1);
+  transform: filter 1s ease-in-out;
+
+  a {
+    position: relative;
+  }
+
+/*
+  &:hover {
+
+    span {
+      opacity: .9;
+      display: block;
+    }
+  }
+*/
+}
+//*/
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, .9);
+  position: fixed;
+  display: none;
+  height: 100%;
+  width: 100%;
+  z-index: 50;
+  div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    img {
+      position: relative;
+      height: auto;
+      max-height: 90%;
+      max-width: 90%;
+    }
+  }
+  button {
+    z-index: 100;
+    position: relative;
+    width: 3em;
+  }
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+// Flexbox Method

@@ -15,48 +15,46 @@ nav {
 
   button {
     display: block;
-    float: right;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: $inner-container-padding;
+    top: $inner-container-padding;
 
     @include susy-breakpoint($bp-small, $susy) {
-      // Hides hamburger on anything larger than mobile.
       display: none;
     }
   }
 
   ul {
-    // Comment this out if you'd prefer the menu to shift content downwards.
+    // Comment this out if you'd prefer the menu to shift content downwards
+    // instead of appearing over the top of it.
     @include menu-overlay;
 
     display: none;
     flex-direction: column;
     list-style: none; //mini-reset
     margin: 0; //mini-reset
+    margin-top: $inner-container-padding; // This makes the top of the menu flush
+    margin-left: -$inner-container-padding;
     padding: 0; //mini-reset
     z-index: 50;
 
     @include susy-breakpoint($bp-small, $susy) {
       display: flex;
       flex-direction: row;
-      justify-content: flex-end;
+      margin: 0;
+      justify-content: flex-start;
       position: static;
     }
   }
 
   li {
     margin: 0;
+    transition: background-color .25s ease-in-out;
 
     @include susy-breakpoint($bp-small, $susy) {
-      margin: 0 .5em;
+      flex-shrink: 0;
+      margin: 0;
       width: auto;
-    }
-  }
-
-  a {
-    &:hover {
-      text-decoration: underline;
     }
   }
 }

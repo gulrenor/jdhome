@@ -1,21 +1,36 @@
-@import 'https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed';
+@import 'https://fonts.googleapis.com/css?family=Bree+Serif|Raleway';
 
-$fontheader: 'Roboto Condensed', serif;
-$fontbody: 'Roboto', sans-serif;
+$fontheader: 'Bree Serif', serif;
+$fontbody: 'Raleway', sans-serif;
+
+html {
+  //font-size: .85em;
+  font-size: 14px;
+
+  @include susy-breakpoint($bp-small, $susy) {
+    //font-size: .9em;
+    font-size: 12px;
+  }
+
+  @include susy-breakpoint($bp-medium, $susy) {
+    //font-size: .95em;
+    font-size: 14px;
+  }
+
+  @include susy-breakpoint($bp-large, $susy) {
+    //font-size: 1em;
+    font-size: 16px;
+  }
+}
 
 body {
+  color: $base-body;
   font-family: $fontbody;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: $fontheader;
-}
-
 h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 h2 {
@@ -30,13 +45,65 @@ h4 {
   font-size: 1.125rem;
 }
 
+h1,
+h2,
+h3,
+h4,
+nav,
+.title-block,
+.tag {
+  font-family: $fontheader;
+  text-shadow: $shadow;
+  text-transform: uppercase;
+}
+
+.tag {
+  font-size: 1.15rem;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
 button,
-input {
+input,
+textarea {
   font-family: $fontbody;
   font-size: 1rem;
+}
+
+.title-block {
+  font-size: 7vw; // To scale properly at mobile sizes
+
+  @include susy-breakpoint($bp-small, $susy) {
+    font-size: 3.2rem;
+  }
+
+  @include susy-breakpoint($bp-medium, $susy) {
+    font-size: 3.6rem;
+  }
+
+  @include susy-breakpoint($bp-large, $susy) {
+    font-size: 3.9rem;
+  }
+}
+
+nav {
+  font-size: 4vw;
+
+  @include susy-breakpoint($bp-small, $susy) {
+    font-size: 1.25rem;
+  }
+
+  @include susy-breakpoint($bp-medium, $susy) {
+    font-size: 1.45rem;
+  }
+
+  @include susy-breakpoint($bp-large, $susy) {
+    font-size: 1.55rem;
+  }
 }

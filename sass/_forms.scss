@@ -1,11 +1,25 @@
-button,
-input {
+input,
+textarea {
+  @include span(16);
   display: block;
   padding: 1rem;
 }
 
 button {
+  @include span(8);
+  margin-left: span(4);
   background-color: $button-bg;
-  border: 0;
   color: $button-color;
+  height: 4rem;
+  padding: 0;
+  border: none;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+
+  div {
+    margin: .5rem 0;
+  }
 }

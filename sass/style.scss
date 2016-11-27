@@ -3,67 +3,137 @@
 
 //@import 'compass/reset';
 @import 'grids';
+@import 'colors';
+@include establish-baseline;
 @import 'typography';
 @import 'navigation';
 @import 'forms';
-@import 'colors';
-@include establish-baseline;
+@import 'gallery';
 
 // This sets the header height, the hamburger button height and width
 // and the logo image max height.
-$header-height: 6rem;
+$header-height: 30rem;
+$header-height-mobile: 4rem;
 
-* {
-  box-sizing: border-box;
-}
+// Offsets content to account for sticky nav-li-bg
 
-%clearfix::after {
-  clear: both;
-  content: ' ';
-  display: table;
-}
-
-html {
-  //background-color: purple;
-  font-size: .85em;
-
+@mixin scale-header-hero {
   @include susy-breakpoint($bp-small, $susy) {
-    //background-color: red;
-    font-size: .9em;
+    height: $header-height;
+    padding: $header-height * .25 0;
   }
 
   @include susy-breakpoint($bp-medium, $susy) {
-    //background-color: blue;
-    font-size: .95em;
+    height: $header-height; //* 1.25;
   }
 
   @include susy-breakpoint($bp-large, $susy) {
-    //background-color: green;
-    font-size: 1em;
+    height: $header-height; // * 1.15;
   }
+}
+
+@mixin mirror-horz {
+  transform: scaleX(-1);
+  filter: FlipH;
 }
 
 h1,
 h2,
 h3,
-h4, {
-  text-transform: uppercase;
+h4,
+title {
+  color: $base-highlight;
 }
+
+.red {
+  background-color: $base-body;
+
+  * { // Possibly a bit too extreme?
+    color: $base-bg;
+  }
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+
+//====================//
+// >>> HEADER         //
+//====================//
 
 header {
-  @extend %clearfix;
-  height: $header-height;
-  position: relative;
+  @include container(16);
+  width: 100%;
+  //position: relative; // Non sticky - needs to be here for children
+  position: fixed; // For sticky mobile header
+  background-color: $base-bg;
+  //padding: .5em 0 .5em 0;
+  border-bottom: 1px solid $base-highlight;
+  z-index: 100;
+
+  @include susy-breakpoint($bp-small, $susy) {
+    @include scale-header-hero;
+    position: inherit;
+    background-color: inherit;
+    border-bottom: 0
+  }
+
+  // Offset the content for sticky nav
+  + .inner-container {
+    padding-top: $header-height-mobile;
+
+    @include susy-breakpoint($bp-small, $susy) {
+      padding-top: inherit;
+    }
+  }
 }
 
-.titleblock {
-  @include span(4);
-  height: 100%;
+.hero {
+  @include scale-header-hero;
+  display: none;
+
+  @include susy-breakpoint ($bp-small, $susy) {
+    background-image: url('../images/hero.jpg');
+    background-position: 50% 50%;
+    background-size: cover;
+    display: inherit;
+    -webkit-filter: brightness(1.25) opacity(50%) blur(.2rem); //not ideal?
+    filter: brightness(1.25) opacity(50%) blur(.2rem);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -50;
+  }
+}
+
+.logo-block {
+  @include span(3 first);
+  display: none;
+
+  @include susy-breakpoint($bp-small, $susy) {
+    @include span(4 first);
+    display: inherit;
+  }
+}
+
+.title-block {
+  @include span(14 first);
+  color: $base-highlight;
+  height: $header-height-mobile;
+  line-height: $header-height-mobile;
+  overflow-y: hidden;
+
+  @include susy-breakpoint($bp-small, $susy) {
+    @include span(12 last);
+    height: auto;
+    line-height: 1.25em;
+  }
 }
 
 .logo {
-  height: 100%;
-  padding: .25rem;
+  width: 100%;
+  max-height: $header-height -  7rem;
 }
 
 nav {
@@ -78,9 +148,12 @@ nav {
     background-color: $nav-button-bg;
     border: 0;
     color: $nav-button-color;
-    height: $header-height;
+    height: $header-height-mobile;
+    max-width: span(2);  //safety, but probably not needed
+    min-width: $header-height-mobile;
+    padding: 0;
     text-align: center;
-    width: $header-height;
+    width: $header-height-mobile;
   }
 
   ul {
@@ -88,7 +161,7 @@ nav {
     text-align: center;
 
     @include susy-breakpoint($bp-small, $susy) {
-      background-color: $nav-ul-bg;
+      background-color: $base-highlight;
     }
   }
 
@@ -96,16 +169,66 @@ nav {
     background-color: $nav-mobile-li-bg;
     border-bottom: .125rem solid $nav-mobile-li-color;
     color: $nav-mobile-li-color;
-    height: 3rem;
-    line-height: 3rem;
+    height: 5rem;
+    line-height: 5rem;
 
     @include susy-breakpoint($bp-small, $susy) {
       background-color: $nav-li-bg;
+      border-bottom: 0;
       color: $nav-li-color;
-      height: $header-height;
-      line-height: $header-height;
-      padding: 0 1rem;
+      padding: 0 .8em;
     }
   }
 
+  a {
+
+    &:hover {
+      background-color: $base-hover;
+    }
+  }
+}
+
+
+
+//====================//
+// >>> FOOTER         //
+//====================//
+
+$footer-height: 15rem;
+
+footer {
+  min-height: $footer-height;
+  position: relative;
+
+  p {
+    @include span(12);
+  }
+
+  .footer-logo {
+    @include span(4 at 13);
+    @include mirror-horz;
+    background-image: url('../images/logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    max-height: $footer-height;
+    height: $footer-height;
+  }
+}
+
+.footer-background {
+    background-color: $base-highlight;
+    height: 15rem;
+    min-height: 15rem;
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    z-index: -51
+}
+
+.copyright {
+  position: absolute;
+  bottom: 0;
+  right: .5rem;
+  font-size: .75rem;
+  opacity: .5;
 }

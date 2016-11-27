@@ -1,20 +1,24 @@
-$base-bg: none;
-$base-body: none;
-$base-highlight: none;
+$base-bg: rgb(255, 255, 255);
+$base-body: rgb(60, 60, 60);
+$base-highlight: rgb(160, 38, 38);
+$base-hover: rgb(200, 38, 38);
+
+$shadow-color: rgba(60, 60, 60, .5);
+$shadow: .03em .03em .03em $shadow-color;
 
 $nav-ul-bg: inherit;
 $nav-li-bg: none;
-$nav-li-color: rgb(0, 0, 0);
+$nav-li-color: rgb(255, 255, 255);
 
-$nav-mobile-ul-bg: rgba(0, 0, 0, .85);
+$nav-mobile-ul-bg: rgba(60, 60, 60, .85);
 $nav-mobile-li-bg: none;
 $nav-mobile-li-color: rgb(255, 255, 255);
 
-$nav-button-bg: rgb(255, 255, 255);
-$nav-button-color: rgb(0, 0, 0);
+$nav-button-bg: rgb(160, 38, 38);
+$nav-button-color: rgb(255, 255, 255);
 
-$button-bg: inherit;
-$button-color: inherit;
+$button-bg: rgb(160, 38, 38);
+$button-color: rgb(255, 255, 255);
 
 $input-bg: inherit;
 $input-color: inherit;
